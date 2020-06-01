@@ -1,13 +1,12 @@
 node{
 
 	stage("Hello World"){
-		//input("Are you sure to continue?")
-        echo "Hello World From Git Jenkinsfile building branch ${branch_name}"
+		input("Are you sure to continue?")
+		echo "Hello World From Git Jenkinsfile"
 	}
 
     stage("Git Clone"){
-    git branch: 'origin/master', credentialsId: 'GIT_PZOMBADE_CREDS_NEW', url: 'https://github.com/pzombade/spring-boot-mongo-docker'
-    //  git branch: '${branch_name}', credentialsId: 'GIT_PZOMBADE_CREDS_NEW', url: 'https://github.com/pzombade/spring-boot-mongo-docker.git'
+      git credentialsId: 'GIT_PZOMBADE_CREDS_NEW', url: 'https://github.com/pzombade/spring-boot-mongo-docker.git'
   //     git 'https://github.com/MithunTechnologiesDevOps/spring-boot-mongo-docker.git'
     }
     
