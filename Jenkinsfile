@@ -6,7 +6,7 @@ node{
 	}
 
     stage("Git Clone"){
-      git credentialsId: 'GIT_PZOMBADE_CREDS_NEW', url: 'https://github.com/pzombade/spring-boot-mongo-docker.git'
+      git branch: '${branch_name}' credentialsId: 'GIT_PZOMBADE_CREDS_NEW', url: 'https://github.com/pzombade/spring-boot-mongo-docker.git'
   //     git 'https://github.com/MithunTechnologiesDevOps/spring-boot-mongo-docker.git'
     }
     
