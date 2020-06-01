@@ -22,6 +22,7 @@ node{
     }
     
     stage("Docker Push"){
+
         withCredentials([usernamePassword(credentialsId: 'docker_cred', passwordVariable: 'dp', usernameVariable: 'du')]) {
             sh "docker login -u '${du}' -p '${dp}'"
         }
