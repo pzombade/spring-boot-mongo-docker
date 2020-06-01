@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
@@ -12,67 +12,13 @@ spec:
         name: springboot
     spec:
       containers:
-      - image: pzombade/spring-boot-mongo2
-        name: springboot
-        ports:
-        - name: springboot
-          containerPort: 8080      
+        - image: pzombade/spring-boot-mongo2
+          name: springboot
+          ports:
+            - name: springboot
+              containerPort: 8080
+  selector:
+    matchLabels:
+      name: springboot
 ---
 # Node Port Service
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    name: springboot
-  name: springboot
-spec:
-  type: NodePort
-  ports:
-    - port: 8080
-      targetPort: 8080
-  selector:
-    name: springboot
----
-# Mongo host path rc
-apiVersion: v1
-kind: ReplicationController
-metadata:
-  labels:
-    name: mongo
-  name: mongo-controller
-spec:
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        name: mongo
-    spec:
-      containers:
-      - image: mongo
-        name: mongo
-        ports:
-        - name: mongo
-          containerPort: 27017
-          hostPort: 27017
-        volumeMounts:
-        - name: mongo-persistent-storage
-          mountPath: /data/db
-      volumes:
-      - name: mongo-persistent-storage
-        hostPath:
-         path: /tmp/dbbackup
----
-# Mongo Node Port RC
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    name: mongo
-  name: mongo
-spec:
-  type: ClusterIP
-  ports:
-    - port: 27017
-      targetPort: 27017
-  selector:
-    name: mongo
