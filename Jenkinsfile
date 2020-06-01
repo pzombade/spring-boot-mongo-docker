@@ -1,8 +1,8 @@
 node{
 
 	stage("Hello World"){
-		input("Are you sure to continue?")
-		echo "Hello World From Git Jenkinsfile"
+		//input("Are you sure to continue?")
+        echo "Hello World From Git Jenkinsfile building branch ${branch_name}"
 	}
 
     stage("Git Clone"){
