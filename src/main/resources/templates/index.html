@@ -83,22 +83,6 @@
 	</div>
 
 	<script>
-		$.ajax({
-			url : "/api/users",
-			success : function(response) {
-				$.each(response, function(i, item) {
-					var row = $("<tr />");
-					$("#usersTable").append(row);
-
-					row.append($("<td>" + item.id + "</td>"));
-					row.append($("<td>" + item.firstName + "</td>"));
-					row.append($("<td>" + item.lastName + "</td>"));
-					row.append($("<td>" + item.email + "</td>"));
-					row.append($("<td><button onclick='deleteUser("+item+")'>Delete</button> </td>"));
-
-				});
-			}
-		})
 
 	   function deleteUser(item){
 	   		$.ajax({
@@ -111,6 +95,25 @@
 	   		});
 	   		return false;
 	   }
+
+		$.ajax({
+			url : "/api/users",
+			success : function(response) {
+				$.each(response, function(i, item) {
+					var row = $("<tr />");
+					$("#usersTable").append(row);
+
+					row.append($("<td>" + item.id + "</td>"));
+					row.append($("<td>" + item.firstName + "</td>"));
+					row.append($("<td>" + item.lastName + "</td>"));
+					row.append($("<td>" + item.email + "</td>"));
+					console.log("Item > " + item);
+					row.append($("<td><button onclick='deleteUser("+item+")'>Delete</button></td>"));
+
+				});
+			}
+		})
+
 	</script>
 </body>
 </html>
