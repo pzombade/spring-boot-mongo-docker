@@ -56,6 +56,7 @@
 						<th>First Name</th>
 						<th>Last Name</th>
 						<th>Email</th>
+						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -85,7 +86,6 @@
 	<script>
 		$.ajax({
 			url : "/api/users",
-
 			success : function(response) {
 				$.each(response, function(i, item) {
 					var row = $("<tr />");
@@ -95,10 +95,22 @@
 					row.append($("<td>" + item.firstName + "</td>"));
 					row.append($("<td>" + item.lastName + "</td>"));
 					row.append($("<td>" + item.email + "</td>"));
+					row.append($("<td><a onclick='return deleteUser("+item.id+");'>Delete</a></td>"));
 
 				});
 			}
 		})
+
+	   function deleteUser(id){
+	   		$.ajax({
+	   			url : "/api/users/delete/"+id,
+				type: 'DELETE',
+				success : function(response) {
+					alert("Deleted user with id " + id);
+				}
+	   		});
+	   		return false;
+	   }
 	</script>
 </body>
 </html>
