@@ -94,7 +94,7 @@
 					row.append($("<td>" + item.firstName + "</td>"));
 					row.append($("<td>" + item.lastName + "</td>"));
 					row.append($("<td>" + item.email + "</td>"));
-					row.append($("<td><a href=http://localhost' onclick='return deleteUser(item);'>Delete</a></td>"));
+					row.append($("<td><a href=http://localhost' onclick='deleteUser("+item+")'>Delete</a></td>"));
 
 				});
 			}
