@@ -1,5 +1,6 @@
 node{
 
+    def tag = 9;
 	stage("Hello World"){
 		//input("Are you sure to continue?")
 		echo "Hello World From Git Jenkinsfile"
@@ -18,7 +19,7 @@ node{
     }
     
     stage("Docker Image Build"){
-        sh "docker build --label 'Added delete functionality' -t pzombade/spring-boot-mongo:8 ."
+        sh "docker build --label 'Added delete functionality' -t pzombade/spring-boot-mongo:${tag} ."
     }
     
     stage("Docker Push"){
@@ -26,16 +27,17 @@ node{
         withCredentials([usernamePassword(credentialsId: 'docker_cred', passwordVariable: 'dp', usernameVariable: 'du')]) {
             sh "docker login -u '${du}' -p '${dp}'"
         }
-        sh "docker push pzombade/spring-boot-mongo:8"
+        sh "docker push pzombade/spring-boot-mongo:${tag}"
     }
-    
+
+    /*
     stage("Deploy into K8s from Jenkins node"){
         sh "kubectl delete -f springBootMongo.yml"
         sh "wait"
         sh "kubectl apply -f springBootMongo.yml"
     }
     
-    /*
+
     stage("Deploy Application In K8s"){
         kubernetesDeploy(
             configs: 'springBootMongo.yml',
