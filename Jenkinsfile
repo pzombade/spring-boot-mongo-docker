@@ -26,7 +26,7 @@ node{
         withCredentials([usernamePassword(credentialsId: 'docker_cred', passwordVariable: 'dp', usernameVariable: 'du')]) {
             sh "docker login -u '${du}' -p '${dp}'"
         }
-        sh "docker push pzombade/spring-boot-mongo2"
+        sh "docker push pzombade/spring-boot-mongo3"
     }
     
     stage("Deploy into K8s from Jenkins node"){
