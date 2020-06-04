@@ -94,18 +94,18 @@
 					row.append($("<td>" + item.firstName + "</td>"));
 					row.append($("<td>" + item.lastName + "</td>"));
 					row.append($("<td>" + item.email + "</td>"));
-					row.append($("<td><a href=http://localhost' onclick='return deleteUser(\'"+item.id+"\');'>Delete</a></td>"));
+					row.append($("<td><a href=http://localhost' onclick='return deleteUser(item);'>Delete</a></td>"));
 
 				});
 			}
 		})
 
-	   function deleteUser(id){
+	   function deleteUser(item){
 	   		$.ajax({
-	   			url : "/api/users/delete/"+id,
+	   			url : "/api/users/delete/"+item.id,
 				type: 'DELETE',
 				success : function(response) {
-					alert("Deleted user with id " + id);
+					alert("Deleted user with id " + item.id);
 					return false;
 				}
 	   		});
