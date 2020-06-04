@@ -2,6 +2,8 @@ package com.mt.springmongo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -17,6 +19,13 @@ public class UserController {
     @Autowired
     public UserController(final UserRepository userRepository) {
         this.userRepository = userRepository;
+    }
+
+    @DeleteMapping(value = "/delete/{id}")
+    public String delete(@PathVariable String id){
+        System.out.println("Delete the user with id "+id);
+        userRepository.deleteById(id);
+        return "redirect:/";
     }
 
     @PostMapping(value = "/save")
