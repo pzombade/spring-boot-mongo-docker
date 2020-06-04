@@ -1,6 +1,6 @@
 node{
 
-    def tag = 9;
+    def tag = 10;
 	stage("Hello World"){
 		//input("Are you sure to continue?")
 		echo "Hello World From Git Jenkinsfile"

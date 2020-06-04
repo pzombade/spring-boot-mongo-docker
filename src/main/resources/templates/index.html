@@ -84,12 +84,12 @@
 
 	<script>
 
-	   function deleteUser(item){
+	   function deleteUser(id){
 	   		$.ajax({
-	   			url : "/api/users/delete/"+item.id,
+	   			url : "/api/users/delete/"+id,
 				type: 'DELETE',
 				success : function(response) {
-					alert("Deleted user with id " + item.id);
+					alert("Deleted user with id " + id);
 					return false;
 				}
 	   		});
@@ -108,7 +108,7 @@
 					row.append($("<td>" + item.lastName + "</td>"));
 					row.append($("<td>" + item.email + "</td>"));
 					console.log("Item > " + item);
-					row.append($("<td><button onclick='deleteUser("+item+")'>Delete</button></td>"));
+					row.append($("<td><button onclick='alert("+item.id+")'>Delete</button></td>"));
 
 				});
 			}
