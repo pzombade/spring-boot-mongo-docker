@@ -18,7 +18,7 @@ node{
     }
     
     stage("Docker Image Build"){
-        sh "docker build -t pzombade/spring-boot-mongo2 ."
+        sh "docker build --label 'Added delete functionality' -t pzombade/spring-boot-mongo:3 ."
     }
     
     stage("Docker Push"){
@@ -26,7 +26,7 @@ node{
         withCredentials([usernamePassword(credentialsId: 'docker_cred', passwordVariable: 'dp', usernameVariable: 'du')]) {
             sh "docker login -u '${du}' -p '${dp}'"
         }
-        sh "docker push pzombade/spring-boot-mongo3"
+        sh "docker push pzombade/spring-boot-mongo"
     }
     
     stage("Deploy into K8s from Jenkins node"){
