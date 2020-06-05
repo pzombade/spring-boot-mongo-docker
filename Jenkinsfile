@@ -1,14 +1,12 @@
 node{
 
-    def tag = 10;
+    def tag = 11;
 	stage("Hello World"){
-		//input("Are you sure to continue?")
-		echo "Hello World From Git Jenkinsfile"
+		echo "Hello World From Git Jenkinsfile tag is ${tag}"
 	}
 
     stage("Git Clone"){
-      git credentialsId: 'GIT_PZOMBADE_CREDS_NEW', url: 'https://github.com/pzombade/spring-boot-mongo-docker.git'
-  //     git 'https://github.com/MithunTechnologiesDevOps/spring-boot-mongo-docker.git'
+        git credentialsId: 'GIT_PZOMBADE_CREDS_NEW', url: 'https://github.com/pzombade/spring-boot-mongo-docker.git'
     }
     
     stage("Maven Clean Build"){
@@ -23,28 +21,9 @@ node{
     }
     
     stage("Docker Push"){
-
         withCredentials([usernamePassword(credentialsId: 'docker_cred', passwordVariable: 'dp', usernameVariable: 'du')]) {
             sh "docker login -u '${du}' -p '${dp}'"
         }
         sh "docker push pzombade/spring-boot-mongo:${tag}"
     }
-
-    /*
-    stage("Deploy into K8s from Jenkins node"){
-        sh "kubectl delete -f springBootMongo.yml"
-        sh "wait"
-        sh "kubectl apply -f springBootMongo.yml"
-    }
-    
-
-    stage("Deploy Application In K8s"){
-        kubernetesDeploy(
-            configs: 'springBootMongo.yml',
-            kubeconfigId: 'KUBERNETES_CLUSTER_CONFIG')
-    }
-    */
-    
-    
-    
 }
