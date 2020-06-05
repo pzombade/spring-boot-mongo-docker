@@ -1,6 +1,6 @@
 node{
 
-    def tag = 11;
+    def tag = 12;
 	stage("Hello World"){
 		echo "Hello World From Git Jenkinsfile tag is ${tag}"
 	}
