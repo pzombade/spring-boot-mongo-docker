@@ -108,8 +108,8 @@
 					row.append($("<td>" + item.lastName + "</td>"));
 					row.append($("<td>" + item.email + "</td>"));
 					console.log("Item > " + item);
-					row.append($("<td><form name='deleteUser_"+item.id+"' action='/delete/"+item.id+"' method='delete'>"));
-					row.append($("<button type='submit'>Delete</button></form></td>"));
+					row.append($("<td><form name='deleteUser_"+item.id+"' action='/delete/"+item.id+"' method='delete'><button type='submit'>Delete</button></form></td>"));
+					//row.append($(""));
 				});
 			}
 		});
